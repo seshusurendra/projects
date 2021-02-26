@@ -1,0 +1,96 @@
+body {
+  margin: 2%;
+  padding: 3%;
+  font-family: sans-serif;
+}
+#titleClass {
+  padding: 15px;
+}
+.websiteTitle {
+  font-size: 5vw;
+  font-weight: bold;
+}
+
+#ifrmCont {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 20%;
+}
+
+#respIfrm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  /* margin: auto; */
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 25px;
+}
+
+#checkCol {
+  text-align: center;
+  padding: 20px;
+}
+
+#btnAcpt,
+#btnExt {
+  text-align: center;
+  padding: 30px;
+}
+
+#acptBtn,
+#extBtn {
+  color: white;
+  outline: none;
+  border: none;
+  width: 100px;
+}
+
+#footer {
+  background-color: darkblue;
+}
+
+#footerText {
+  width: 60%;
+  margin: auto;
+  color: white;
+  padding: 20px;
+}
+
+@media screen and (max-width: 540px) {
+  .container {
+    width: 60%;
+    margin: auto;
+  }
+  #ifrmCont {
+    padding-top: 60%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .container {
+    width: 80%;
+    margin: auto;
+  }
+  #ifrmCont {
+    padding-top: 60%;
+  }
+  #footerText {
+    width: 100%;
+    color: white;
+  }
+}
+
+/* @media screen and (max-width: 960px) {
+}
+
+@media screen and (max-width: 1140px) {
+}
+
+@media screen and (min-width: 1140px) {
+} */

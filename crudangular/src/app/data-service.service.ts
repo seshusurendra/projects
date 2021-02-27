@@ -10,6 +10,6 @@ export class DataServiceService {
 
   constructor(private http : HttpClient) {   }
   getUserData(){
-    return this.http.get('https://jsonplaceholer.typicode.com/users');
+    return this.http.get('https://jsonplaceholder.typicode.com/users');
   }
 }

@@ -19,8 +19,7 @@
          -->
 
 <div class="dataBlock">
-  <div *ngIf="issue">Unable to fetch the data</div>
-  <mat-accordion *ngIf="noIssue" class="example-headers-align">
+  <mat-accordion *ngIf="!issue" class="example-headers-align">
     <mat-expansion-panel *ngFor="let data of userData">
       <mat-expansion-panel-header>
         <mat-panel-title> {{ data.name }} </mat-panel-title>

@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule} from '@angular/material/icon';
+import {  MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatIconModule} from '@angular/material/icon';
     HttpClientModule,
     MatListModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule, 
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

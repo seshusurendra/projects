@@ -45,7 +45,7 @@ export class DisplayDataComponent implements OnInit {
       localStorage.setItem("userData", JSON.stringify(response))
       console.log(JSON.parse(localStorage.getItem("userData")));
       this.userData = JSON.parse(localStorage.getItem("userData"));
-      this.issue = true;
+      this.issue = false;
     }, 
     (err) => {
       if(err instanceof HttpErrorResponse && (err.status !== 200)){

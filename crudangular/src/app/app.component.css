@@ -1,0 +1,14 @@
+.operatingBtns {
+  margin: 2%;
+  padding: 2%;
+}
+
+#btnAdd,
+#btnview {
+  padding: 20px;
+  margin-right: 2%;
+}
+
+.container {
+  padding: 5%;
+}

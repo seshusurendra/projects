@@ -1,0 +1,10 @@
+.example-full-width {
+  padding: 30px;
+}
+
+.gpsBtn {
+  background-color: white;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}

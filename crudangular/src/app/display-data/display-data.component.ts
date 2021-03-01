@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
+import { UserModel } from '../model/userDataModel';
 import { DataServiceService } from '../data-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -14,51 +15,84 @@ export class DisplayDataComponent implements OnInit {
 
   
   constructor(private dataService : DataServiceService, private snackbar : MatSnackBar) { }
-   userData : any;
+   userData : UserModel[];
    issue : boolean = false;
-   obj : any;
+   obj : {};
+   IsWait : boolean = true;
    
    openSnackBar(message: string, action: string) {
     this.snackbar.open(message, action);
   }
-  ngOnInit(): void {
-    this.dataService.getUserData().subscribe((response : any) =>{
-      // console.log(response);
-      // console.log(typeof response)
-      this.obj = {
-        "id": 11,
-    name: "koushik Prajwal",
-    "username": "Like",
-    "email": "koushikDoremon@disney.com",
-    "address": {
-      "street": "SEZ",
-      "suite": "Apt. 556",
-      "city": "Moolapeta",
-      "zipcode": "1236",
-      "geo": {
-        "lat": "-37.3159",
-        "lng": "81.1496"
-        }
-       }
-      };
-      response.push(this.obj);
-      localStorage.setItem("userData", JSON.stringify(response))
-      console.log(JSON.parse(localStorage.getItem("userData")));
+  
+  getUserData(): void {
+    let checkData = localStorage.getItem('userData')
+    if(!!localStorage.getItem('userData') && checkData !== null){
       this.userData = JSON.parse(localStorage.getItem("userData"));
+      // console.log(!!localStorage.getItem("userData"));
       this.issue = false;
-    }, 
-    (err) => {
-      if(err instanceof HttpErrorResponse && (err.status !== 200)){
-        // console.log(err.message);  
-        this.openSnackBar(`${err.statusText} Status Code  ${err.status}`, 'close' );
-        this.issue = true;
-      }
-      console.log(err)
-    })
+      this.IsWait = false;
+    }else{
+      this.dataService.getUserData().subscribe((response) =>{
+        localStorage.setItem("userData", JSON.stringify(response))
+        this.userData = JSON.parse(localStorage.getItem("userData"));
+        this.issue = false;
+        this.IsWait = false;
+      }, 
+      (err) => {
+        if(err instanceof HttpErrorResponse && (err.status !== 200)){
+          this.openSnackBar(`${err.statusText} Status Code  ${err.status}`, 'close' );
+          this.issue = true;
+          this.IsWait = false;
+        }
+        console.log(err)
+      })
+    }
+    
+  }
+  ngOnInit(): void {
+    console.log('data rendering started');
+      this.getUserData(); 
   }
 
   deleteData(id){
-    console.log(id);
+    console.log('Delete user clicked');
+    this.dataService.deleteUser(id).subscribe((response) => {
+  if(response){
+    console.log('user deleted successfull');
+    let allUsersData = JSON.parse(localStorage.getItem('userData'));
+    let filteredData = allUsersData.filter((data) => {
+      if(data.id !== id){
+        return data;
+      }
+      
+    })
+    localStorage.removeItem('userData');
+    localStorage.setItem("userData", JSON.stringify(filteredData));
+    this.openSnackBar(`Successfully Deleted`, 'close' );
+    this.getUserData();
+  }
+    }, (err) => {
+      if(err){
+        console.log(err.message);
+        this.openSnackBar(`Unable to delete right now..Please try after some time`, 'close' );
+      }
+    })
   }
 
 }
+
+
+
+// filteredData = allUsersData.filter((user) => {
+//   if(user.id === 2){
+//     return user;
+//   }
+// }
+
+// this.dataService.deleteUser(id).subscribe((response) => {
+//   console.log(response)
+//   
+//     )},
+// }, (err) => {
+//     console.log(err);
+// })

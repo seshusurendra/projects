@@ -1,1 +1,12 @@
-<app-display-data></app-display-data>
+<section class="operatingBtns">
+  <button mat-raised-button color="primary" id="btnAdd" routerLink="/adduser">
+    Add User
+  </button>
+  <button mat-raised-button color="warn" id="btnview" routerLink="/viewusers">
+    View Users
+  </button>
+</section>
+<mat-divider></mat-divider>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

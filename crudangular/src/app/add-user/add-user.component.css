@@ -1,0 +1,31 @@
+.inputFormBlock {
+  margin: auto;
+  padding: 2%;
+  padding-right: 4%;
+  min-width: 300px;
+  max-width: 600px;
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+
+#nameInput {
+  width: 200px;
+}
+
+.example-full-width {
+  width: 100%;
+  font-size: 20px;
+  padding: 2%;
+}
+
+.gpsBtn {
+  background-color: white;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.btns {
+  margin: 2%;
+}

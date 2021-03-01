@@ -1,0 +1,300 @@
+<div class="inputFormBlock">
+  <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width">
+      <mat-label>userId</mat-label>
+      <input
+        type="text"
+        formControlName="userId"
+        matInput
+        placeholder="{{ userId }}"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input
+        type="text"
+        formControlName="name"
+        matInput
+        placeholder="Name"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="name.hasError('required')"> Name required </mat-error>
+      <mat-error *ngIf="name.hasError('minlength')">
+        Name is too small
+      </mat-error>
+      <mat-error *ngIf="name.hasError('maxlength')">
+        Name is too long
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>UserName</mat-label>
+      <input
+        type="text"
+        formControlName="username"
+        matInput
+        placeholder="ex.Mathews"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="username.hasError('required')">
+        Username required
+      </mat-error>
+      <mat-error *ngIf="username.hasError('minlength')">
+        Username is too small
+      </mat-error>
+      <mat-error *ngIf="username.hasError('maxlength')">
+        Username is too long
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        formControlName="email"
+        matInput
+        placeholder="ex.adrew@gmail.com"
+        required
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="email.hasError('required')"> email required </mat-error>
+      <mat-error *ngIf="email.hasError('email')"> Invalid Email Id </mat-error>
+    </mat-form-field>
+    <div formGroupName="address">
+      <mat-form-field class="example-full-width">
+        <mat-label>street</mat-label>
+        <input
+          type="text"
+          formControlName="street"
+          matInput
+          placeholder="ex.Amber Street"
+          required
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="street.hasError('required')">
+          street required
+        </mat-error>
+        <mat-error *ngIf="street.hasError('minlength')">
+          street name is too small
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>suite</mat-label>
+        <input
+          type="text"
+          formControlName="suite"
+          matInput
+          placeholder="ex. suite 007"
+          required
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="suite.hasError('required')">
+          suite required
+        </mat-error>
+        <mat-error *ngIf="suite.hasError('minlength')">
+          suite name is too small
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>city</mat-label>
+        <input
+          type="text"
+          formControlName="city"
+          matInput
+          placeholder="ex.Texas"
+          required
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="city.hasError('required')"> city required </mat-error>
+        <mat-error *ngIf="city.hasError('minlength')">
+          city name is too small
+        </mat-error>
+        <mat-error *ngIf="city.hasError('pattern')">
+          Invalid City Name
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>zipcode</mat-label>
+        <input
+          type="text"
+          formControlName="zipcode"
+          matInput
+          placeholder="ex.00334"
+          required
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="zipcode.hasError('required')">
+          zipcode required
+        </mat-error>
+        <mat-error
+          *ngIf="zipcode.hasError('minlength') || zipcode.hasError('pattern')"
+        >
+          Invalid zipcode
+        </mat-error>
+      </mat-form-field>
+      <div formGroupName="geolocation">
+        <mat-form-field class="example-full-width">
+          <mat-label>Latitude coordinates</mat-label>
+          <input
+            type="text"
+            formControlName="latitude"
+            matInput
+            placeholder="ex. 123.43.22.44"
+            required
+            [errorStateMatcher]="matcher"
+          /><button
+            mat-mini-fab
+            class="gpsBtn"
+            (click)="getLatitudeCoord($event)"
+          >
+            <mat-icon>gps_fixed</mat-icon>
+          </button>
+          <mat-error *ngIf="latitude.hasError('required')">
+            latitude coordinates required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              latitude.hasError('minlength') || latitude.hasError('pattern')
+            "
+          >
+            Invalid latitude coordinates
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Longitude coordinates</mat-label>
+          <input
+            type="text"
+            formControlName="longitude"
+            matInput
+            placeholder="ex. 124.99.33.66"
+            required
+            [errorStateMatcher]="matcher"
+          />
+          <button
+            mat-mini-fab
+            class="gpsBtn"
+            (click)="getLongitudeCoord($event)"
+          >
+            <mat-icon>gps_fixed</mat-icon>
+          </button>
+          <mat-error *ngIf="longitude.hasError('required')">
+            longitude coordinates required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              longitude.hasError('minlength') || longitude.hasError('pattern')
+            "
+          >
+            Invalid longitude coordinates
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Phone</mat-label>
+      <input
+        type="text"
+        formControlName="phone"
+        matInput
+        placeholder="ex.0123998348"
+        required
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="phone.hasError('required')">
+        Phone number required
+      </mat-error>
+      <mat-error
+        *ngIf="
+          phone.hasError('minlength') ||
+          phone.hasError('maxlength') ||
+          phone.hasError('pattern')
+        "
+      >
+        Invalid Phone Number
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Website</mat-label>
+      <input
+        type="text"
+        formControlName="website"
+        matInput
+        placeholder="ex. www.abc.com"
+        required
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="website.hasError('required')">
+        website required
+      </mat-error>
+      <mat-error
+        *ngIf="website.hasError('minlength') || website.hasError('maxlength')"
+      >
+        Invalid website
+      </mat-error>
+    </mat-form-field>
+    <div formGroupName="company">
+      <mat-form-field class="example-full-width">
+        <mat-label>Comapany Name</mat-label>
+        <input
+          type="text"
+          formControlName="companyname"
+          matInput
+          placeholder="ex.airBnb"
+          required
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="companyname.hasError('required')">
+          company Name required
+        </mat-error>
+        <mat-error *ngIf="companyname.hasError('minlength')">
+          Company Name is too short!
+        </mat-error>
+        <mat-error *ngIf="companyname.hasError('maxlength')">
+          Company Name is too long!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Catch Phrase</mat-label>
+        <input
+          type="text"
+          formControlName="catchPhrase"
+          matInput
+          placeholder="ex.The most you're proud about yourself"
+          required
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="catchPhrase.hasError('required')">
+          Catch Phrase required
+        </mat-error>
+        <mat-error *ngIf="catchPhrase.hasError('pattern')">
+          Invalid catchPhrase
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>bussiness</mat-label>
+        <input
+          type="text"
+          formControlName="business"
+          matInput
+          placeholder="ex. Hardware imports and exports"
+          required
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="business.hasError('required')">
+          bussiness name required
+        </mat-error>
+        <mat-error *ngIf="business.hasError('minlength')">
+          Invalid bussines name
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button
+      class="btns"
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!updateForm.valid"
+    >
+      Submit Edit
+    </button>
+    <button class="btns" type="reset" mat-raised-button>Reset</button>
+  </form>
+</div>

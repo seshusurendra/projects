@@ -17,48 +17,65 @@
           {{data.address.geo.lat}}
           {{data.address.geo.lng}}
          -->
+<div>
+  <div class="dataBlock">
+    <mat-spinner class="spinner" *ngIf="IsWait" color="accent"></mat-spinner>
+    <mat-accordion *ngIf="!issue" class="example-headers-align">
+      <mat-expansion-panel *ngFor="let data of userData">
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ data.name }} </mat-panel-title>
+          <mat-panel-description>
+            {{ data.email }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list role="list">
+          <mat-list-item role="listitem">Name: {{ data.name }}</mat-list-item>
+          <mat-list-item role="list item"
+            >Username: {{ data.username }}</mat-list-item
+          >
+          <mat-list-item role="listitem"
+            >EMail id: {{ data.email }}
+          </mat-list-item>
+          <mat-list-item role="listitem"
+            >Address: {{ data.address.street }}, {{ data.address.suite }},
+            {{ data.address.city }}, {{ data.address.zipcode }}</mat-list-item
+          >
+          <mat-list-item role="listitem"
+            >Gelolocation: Latitude: {{ data.address.geo.lat }}, Longitude:
+            {{ data.address.geo.lng }}</mat-list-item
+          >
+          <mat-list-item role="listitem"
+            >Contact Number: {{ data.phone }}</mat-list-item
+          >
+          <mat-list-item role="listitem"
+            >Website: {{ data.website }}</mat-list-item
+          >
+          <mat-list-item role="listitem"
+            >Company: {{ data.company.name }}, {{ data.company.catchPhrase }},
+            {{ data.company.bs }}</mat-list-item
+          >
+        </mat-list>
 
-<div class="dataBlock">
-  <mat-accordion *ngIf="!issue" class="example-headers-align">
-    <mat-expansion-panel *ngFor="let data of userData">
-      <mat-expansion-panel-header>
-        <mat-panel-title> {{ data.name }} </mat-panel-title>
-        <mat-panel-description>
-          {{ data.email }}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <mat-list role="list">
-        <mat-list-item role="listitem">Name : {{ data.name }}</mat-list-item>
-        <mat-list-item role="listitem"
-          >Username : {{ data.username }}</mat-list-item
+        <button
+          mat-fab
+          color="primary"
+          aria-label="Example icon button with a delete icon"
+          class="btns"
+          routerLink="/updateuser"
+          [queryParams]="{ id: data.id }"
         >
-        <mat-list-item role="listitem"
-          >EMail id : {{ data.email }}
-        </mat-list-item>
-        <mat-list-item role="listitem"
-          >Address: {{ data.address.street }}, {{ data.address.suite }},
-          {{ data.address.city }}, {{ data.address.zipcode }},
-          {{ data.address.geo.lat }}, {{ data.address.geo.lng }}</mat-list-item
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-fab
+          color="warn"
+          aria-label="Example icon button with a delete icon"
+          class="btns"
+          (click)="deleteData(data.id)"
         >
-      </mat-list>
-
-      <button
-        mat-fab
-        color="primary"
-        aria-label="Example icon button with a delete icon"
-        class="btns"
-      >
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button
-        mat-fab
-        color="warn"
-        aria-label="Example icon button with a delete icon"
-        class="btns"
-        (click)="deleteData(data.id)"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-expansion-panel>
-  </mat-accordion>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </div>
